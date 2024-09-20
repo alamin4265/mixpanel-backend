@@ -59,7 +59,7 @@ namespace ProductManagement.Controllers
             {
                 return NotFound();
             }
-            bool success = await _mixpanelService.TrackEventAsync("Product Viewed", product);
+            bool success = await _mixpanelService.TrackEventAsync("Backend", product);
             var productDto = _mapper.Map<ProductDto>(product);
             return Ok(productDto);
         }

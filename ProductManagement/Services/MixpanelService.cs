@@ -27,7 +27,7 @@ namespace ProductManagement.Services
                 time = 12, 
                 distinct_id = distinctId, 
                 insert_id = insertId, 
-                price = product.Price,
+                price = product.Price
             };
 
             string jsonProperties = JsonConvert.SerializeObject(properties);
