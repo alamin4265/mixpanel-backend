@@ -9,8 +9,12 @@ namespace ProductManagement.Data
         {
 
         }
+        public ProductContext()
+        {
+            
+        }
+        public virtual DbSet<Product> Products { get; set; }
 
-        public DbSet<Product> Products { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
