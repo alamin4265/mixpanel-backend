@@ -7,7 +7,7 @@ namespace ProductManagement.Repositories
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        IEnumerable<SampleProduct> GetAllProductsAsync();
         Task<IEnumerable<Product>> GetAllpageProductAsync(int limit, int skip);
         Task<Product> GetProductByIdAsync(int id);
         Task<Product> CreateProductAsync(Product product);
@@ -20,15 +20,40 @@ namespace ProductManagement.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly ProductContext _context;
+        List<SampleProduct> sampleProduct = new List<SampleProduct>
+        {
+            new SampleProduct
+            {
+               Id = 1,
+               Brand = "Essence",
+               Title = "Essence Mascara Lash Princess",
+               Category = "beauty",
+               Description = "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+               Price = 10,
+               Images = new string[]{"https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"},
+               Stock = 5
+            },
+            new SampleProduct
+            {
+               Id = 2,
+               Brand = "Glamour Beauty",
+               Title = "Eyeshadow Palette with Mirror",
+               Category = "beauty",
+               Description = "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+               Price = 10,
+               Images = new string[]{"https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"},
+               Stock = 5
+            }
+        };
 
         public ProductRepository(ProductContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public IEnumerable<SampleProduct> GetAllProductsAsync()
         {
-            return await _context.Products.ToListAsync();
+            return sampleProduct;
         }
 
         public async Task<Product> GetProductByIdAsync(int id)

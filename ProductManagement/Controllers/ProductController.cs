@@ -1,12 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Mixpanel;
 using ProductManagement.Domain;
 using ProductManagement.Models;
 using ProductManagement.Services;
-using System.Net.Http;
-using System.Text.Json;
-using System.Text;
 
 namespace ProductManagement.Controllers
 {
@@ -27,11 +23,10 @@ namespace ProductManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+        public ActionResult<IEnumerable<SampleProduct>> GetProducts()
         {
-            var products = await _productService.GetAllProductsAsync();
-            var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
-            return Ok(productDtos);
+            var products = _productService.GetAllProductsAsync();
+            return Ok(products);
         }
 
         [HttpGet("pagination")]

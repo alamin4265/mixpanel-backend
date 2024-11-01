@@ -5,7 +5,7 @@ namespace ProductManagement.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        IEnumerable<SampleProduct> GetAllProductsAsync();
         Task<IEnumerable<Product>> GetAllpageProductAsync(int skip, int limit);
         Task<Product> GetProductByIdAsync(int id);
         Task<Product> CreateProductAsync(Product product);
@@ -17,15 +17,15 @@ namespace ProductManagement.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-
+        
         public ProductService(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public IEnumerable<SampleProduct> GetAllProductsAsync()
         {
-            return await _productRepository.GetAllProductsAsync();
+            return  _productRepository.GetAllProductsAsync();
         }
         public async Task<IEnumerable<Product>> GetAllpageProductAsync(int limit, int skip)
         {
