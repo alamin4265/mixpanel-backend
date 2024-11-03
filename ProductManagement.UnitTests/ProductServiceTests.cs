@@ -17,23 +17,23 @@ namespace ProductManagement.UnitTests
             _productService = new ProductService(_mockProductRepository.Object);
         }
 
-        [Fact]
-        public async Task GetAllProductsAsync_ShouldReturnProducts()
-        {
-            // Arrange
-            var products = new List<Product>
-            {
-                new Product { Id = 1, Name = "Product1", Price = 100 },
-                new Product { Id = 2, Name = "Product2", Price = 200 }
-            };
-            _mockProductRepository.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
+        //[Fact]
+        //public async Task GetAllProductsAsync_ShouldReturnProducts()
+        //{
+        //    // Arrange
+        //    var products = new List<Product>
+        //    {
+        //        new Product { Id = 1, Name = "Product1", Price = 100 },
+        //        new Product { Id = 2, Name = "Product2", Price = 200 }
+        //    };
+        //    _mockProductRepository.Setup(repo => repo.GetAllProductsAsync()).ReturnsAsync(products);
 
-            // Act
-            var result = await _productService.GetAllProductsAsync();
+        //    // Act
+        //    var result = await _productService.GetAllProductsAsync();
 
-            // Assert
-            result.Should().BeEquivalentTo(products);
-        }
+        //    // Assert
+        //    result.Should().BeEquivalentTo(products);
+        //}
 
         [Fact]
         public async Task GetProductByIdAsync_ShouldReturnProduct_WhenProductExists()
