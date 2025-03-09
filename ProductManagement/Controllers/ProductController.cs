@@ -51,7 +51,7 @@ namespace ProductManagement.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductDto>> CreateProduct([FromBody] UpsertProductDto productDto)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || productDto.Price <= 0)
             {
                 return BadRequest(ModelState);
             }

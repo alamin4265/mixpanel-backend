@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
-using ProductManagement.Domain;
-using ProductManagement.Models;
+﻿using ProductManagement.Domain;
 using System.Net;
 using System.Net.Http.Json;
 
@@ -67,6 +64,20 @@ namespace ProductManagement.IntegrationTests
             Assert.NotNull(createdProduct);
             Assert.Equal(productDto.Name, createdProduct.Name);
             Assert.Equal(productDto.Price, createdProduct.Price);
+        }
+
+        [Fact]
+        public async Task CreateProduct_ReturnsBadRequest_WhenPriceIsZeroOrNegative()
+        {
+            // Arrange
+            var productDto = new UpsertProductDto { Name = "Television", Description = "LG's smart TV", Price = -8000 };
+
+            // Act
+            var response = await _client.PostAsJsonAsync("/product", productDto);
+
+            // Assert
+            Assert.False(response.IsSuccessStatusCode);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         [Fact]
